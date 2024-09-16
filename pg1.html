@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Pen It</title>
+   <link rel="icon" type="image/x-icon" href="favicon.ico">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1><img src='img1.png' class="logo">Notes</h1>
+    <button class="btn" ><img src="add.png" class="butn"><pre>  Create a Note</pre> </button>
+    <button id="settingsButton" style="display:inline-block;">Settings</button>
+    <div class="notes-container">
+        <!--<p contenteditable='true' class='input-box'><img src="delete.png" alt="delete"></p>-->
+    </div>
+</div>
+
+
+    <!-- Settings Bar -->
+    <div id="settingsBar">
+        <h2>Settings</h2>
+        <p>Upload your audio.</p>
+        <input type="file" id="audioFileInput" accept="audio/*">
+    </div>
+    
+
+<script src="script.js"></script>
+    <!-- Audio player with default source -->
+    <audio controls id="audioPlayer">
+        <source src="piano.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <br><br>
+
+    <!-- Input for uploading a new audio file 
+    <input type="file" id="audioFileInput" accept="audio/*">-->
+
+    <!-- Add JavaScript inline here or in an external script file -->
+    <script>
+        // Select the file input and audio player elements
+        const audioInput = document.getElementById('audioFileInput');
+        const audioPlayer = document.getElementById('audioPlayer');
+
+        // Event listener for when the user selects a new file
+        audioInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];  // Get the selected file
+
+            if (file) {
+                // Create a URL for the uploaded file
+                const audioURL = URL.createObjectURL(file);
+
+                // Set the audio player source to the new file URL
+                audioPlayer.src = audioURL;
+
+                // Load and play the new audio file
+                audioPlayer.load();
+                audioPlayer.play();
+            } else {
+                console.log("No file selected.");
+            }
+        });
+    </script>
+
+</body>
+</html>
